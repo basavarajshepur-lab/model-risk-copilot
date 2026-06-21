@@ -226,7 +226,7 @@ This is a production-ready **demo**. For deployment at a regulated institution:
 
 ## Background
 
-Built by [Basavaraj Shepur](https://linkedin.com/in/basavarajshepur) — Senior AI Product Manager with 19 years in financial services. Former Senior Product Owner at Deutsche Bank CDO, where the AI/data platform team was responsible for responsible AI governance frameworks across 450+ AI models including validation pipeline tooling, confidence monitoring, and MRM reporting. This system implements the governance patterns from that work: structured compliance checking, evidence-based findings, human review before any regulatory submission.
+Built by [Basavaraj Shepur](https://linkedin.com/in/basavarajshepur) — Senior AI Product Manager with 19 years in financial services. This system implements production governance patterns for AI in financial services: structured compliance checking, evidence-based findings, human review before any regulatory submission.
 
 ---
 
