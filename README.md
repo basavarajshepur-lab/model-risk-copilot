@@ -1,11 +1,11 @@
 # Model Risk Copilot
 
-Bit of history and background before we dive in!
+**Bit of history and background before we dive in!**
 Model Risk Management (MRM) is a regulatory compliance practice in banking and finance used to manage, minimize, and govern the financial or reputational losses caused by flawed computer models.Regulators treat model risk with the same level of severity as credit or market risk because a broken algorithm can bankrupt a financial institution.
 
-Why Model Risk HappensModel risk occurs when a statistical, financial, or AI model fails. This usually stems from two main causes:Fundamental Errors: The model is built on flawed mathematics, incorrect data, or wrong economic assumptions.Incorrect Use: A model designed for one specific market is incorrectly used in a different, unsuitable market.
+**Why Model Risk Happens** Model risk occurs when a statistical, financial, or AI model fails. This usually stems from two main causes:Fundamental Errors: The model is built on flawed mathematics, incorrect data, or wrong economic assumptions.Incorrect Use: A model designed for one specific market is incorrectly used in a different, unsuitable market.
 
-How AI and Machine Learning Have Changed MRMTraditional MRM was built for static financial equations (like Excel macros or linear regressions). Modern AI models introduce new complexities that MRM teams must account for:The Black Box Problem: Machine learning models are often too complex to easily explain, making validation difficult.Data Drift: AI models can degrade quickly as consumer behaviour and economic conditions change in real time.GenAI & LLMs: Large Language Models introduce risks like hallucinations, data privacy leaks, and copyright infringement that traditional validation tools cannot catch.
+**How AI and Machine Learning Have Changed MRM** Traditional MRM was built for static financial equations (like Excel macros or linear regressions). Modern AI models introduce new complexities that MRM teams must account for:The Black Box Problem: Machine learning models are often too complex to easily explain, making validation difficult.Data Drift: AI models can degrade quickly as consumer behaviour and economic conditions change in real time.GenAI & LLMs: Large Language Models introduce risks like hallucinations, data privacy leaks, and copyright infringement that traditional validation tools cannot catch.
 
 **Multi-agent AI model risk management platform** — reads a Model Development Document and produces SR 11-7 compliance gap analysis, validation questions, risk rating, and a report draft. In under 2 minutes.
 
