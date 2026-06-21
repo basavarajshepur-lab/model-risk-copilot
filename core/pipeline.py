@@ -14,8 +14,8 @@ making the pipeline testable, replaceable, and auditable at each stage.
 import json
 from pathlib import Path
 from datetime import datetime
-from ..agents import document_analyser, compliance_checker, question_generator, report_drafter
-from ..core.models import (
+from agents import document_analyser, compliance_checker, question_generator, report_drafter
+from core.models import (
     RegulatoryFramework, ExtractedModelMetadata,
     ComplianceReport, ValidationReport
 )

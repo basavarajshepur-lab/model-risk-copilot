@@ -8,15 +8,15 @@ Four-tab UI:
   4. Reports     — view and download validation report
 """
 
+from dotenv import load_dotenv
+load_dotenv()
+
 import json
 import streamlit as st
 from pathlib import Path
-from dotenv import load_dotenv
 from core.models import RegulatoryFramework
 from core.pipeline import process_mdd
 from data.sample_mdds import SAMPLE_MDDS
-
-load_dotenv()
 
 st.set_page_config(
     page_title="Model Risk Copilot",

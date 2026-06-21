@@ -11,7 +11,7 @@ hallucination risk and makes the compliance check more precise.
 """
 
 from anthropic import Anthropic
-from ..core.models import ExtractedModelMetadata, ModelType
+from core.models import ExtractedModelMetadata, ModelType
 
 client = Anthropic()
 

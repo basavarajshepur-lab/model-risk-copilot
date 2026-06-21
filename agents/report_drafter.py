@@ -7,7 +7,7 @@ the initial report writing phase from days to minutes.
 """
 
 from anthropic import Anthropic
-from ..core.models import (
+from core.models import (
     ExtractedModelMetadata, ComplianceReport, ValidationReport,
     ModelRiskRating, RegulatoryFramework, ComplianceStatus
 )

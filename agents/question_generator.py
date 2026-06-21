@@ -10,7 +10,7 @@ not writes from scratch.
 """
 
 from anthropic import Anthropic
-from ..core.models import (
+from core.models import (
     ExtractedModelMetadata, ComplianceReport, ValidationQuestion, ComplianceStatus
 )
 

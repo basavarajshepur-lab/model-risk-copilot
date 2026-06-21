@@ -11,11 +11,11 @@ specific regulatory requirement. Regulators and MRM analysts can follow the logi
 
 import json
 from anthropic import Anthropic
-from ..core.models import (
+from core.models import (
     ExtractedModelMetadata, ComplianceReport, RequirementCheck,
     ComplianceStatus, ModelRiskRating, RegulatoryFramework
 )
-from ..core.sr117_framework import SR117_REQUIREMENTS, RequirementSpec
+from core.sr117_framework import SR117_REQUIREMENTS, RequirementSpec
 
 client = Anthropic()
 
