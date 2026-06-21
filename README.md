@@ -14,8 +14,11 @@ Model Risk Management (MRM) is a regulatory compliance practice in banking and f
 ---
 
 ## The Problem
-
+Banks cannot legally use any AI, machine learning, or statistical tool to make business decisions without a thorough, objective review by an internal or external team that had nothing to do with building it.
 Every AI or statistical model at a regulated bank requires independent validation under **SR 11-7** (US Fed/OCC) or **SS1/23** (UK PRA). Credit scoring. Fraud detection. AML monitoring. Market risk. Pricing. All of them.
+**Breaking Down the Regulations** The two most influential Model Risk Management (MRM) regulatory frameworks in global banking: 
+- SR 11-7 (US - Fed/OCC): Issued by the US Federal Reserve and the Office of the Comptroller of the Currency (OCC). It is the global gold standard for model safety. Note: In 2026, the Fed updated this framework via SR 26-2, modernising the rules to make them more risk-proportionate while keeping these exact core validation rules intact.
+- SS1/23 (UK - PRA): Issued by the UK’s Prudential Regulation Authority (PRA). This framework formalises strict requirements for UK banks, specifically elevating governance to board-level accountability.
 
 The validation process is slow and mechanical:
 1. MRM analyst reads the Model Development Document
