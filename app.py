@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import json
+import os
 import streamlit as st
 from pathlib import Path
 from core.models import RegulatoryFramework
@@ -29,6 +30,23 @@ st.markdown(
     "**Multi-agent SR 11-7 / SS1/23 compliance assessment** | "
     "Document analysis → Compliance check → Validation questions → Report draft"
 )
+
+# --- Trial mode ---
+TRIAL_MODE = os.environ.get("TRIAL_MODE", "false").lower() == "true"
+TRIAL_RUN_CAP = 3
+GITHUB_URL = "https://github.com/basavarajshepur-lab/model-risk-copilot"
+
+if "trial_runs_used" not in st.session_state:
+    st.session_state["trial_runs_used"] = 0
+trial_limit_reached = TRIAL_MODE and st.session_state["trial_runs_used"] >= TRIAL_RUN_CAP
+
+if TRIAL_MODE:
+    st.info(
+        f"🔒 **Live Trial** — sample MDDs only, {TRIAL_RUN_CAP} runs per browser session. "
+        f"[Clone the repo]({GITHUB_URL}) to assess your own documents.",
+        icon="🔒",
+    )
+
 st.divider()
 
 if "result" not in st.session_state:
@@ -70,29 +88,35 @@ tab1, tab2, tab3, tab4 = st.tabs(["Assess Model", "Sample MDDs", "Validation Que
 with tab1:
     st.header("Assess a Model Development Document")
 
-    doc_text = st.text_area(
-        "Paste your Model Development Document (MDD) here",
-        height=400,
-        placeholder="Paste the full text of your Model Development Document...",
-    )
+    if TRIAL_MODE:
+        st.info(
+            f"Pasting your own MDD is disabled in trial mode. Use the **Sample MDDs** tab, "
+            f"or [clone the repo]({GITHUB_URL}) to assess your own documents."
+        )
+    else:
+        doc_text = st.text_area(
+            "Paste your Model Development Document (MDD) here",
+            height=400,
+            placeholder="Paste the full text of your Model Development Document...",
+        )
 
-    col1, col2 = st.columns([1, 4])
-    with col1:
-        run_btn = st.button("Run Assessment", type="primary", use_container_width=True)
+        col1, col2 = st.columns([1, 4])
+        with col1:
+            run_btn = st.button("Run Assessment", type="primary", use_container_width=True)
 
-    if run_btn:
-        if not doc_text.strip():
-            st.error("Please paste a Model Development Document first.")
-        else:
-            with st.spinner("Running 4-agent pipeline... (takes ~60–90 seconds)"):
-                try:
-                    result = process_mdd(doc_text, fw_enum)
-                    st.session_state.result = result
-                    st.success("Assessment complete.")
-                    st.rerun()
-                except Exception as e:
-                    st.error(f"Pipeline error: {e}")
-                    st.info("Check that your ANTHROPIC_API_KEY is set in .env")
+        if run_btn:
+            if not doc_text.strip():
+                st.error("Please paste a Model Development Document first.")
+            else:
+                with st.spinner("Running 4-agent pipeline... (takes ~60–90 seconds)"):
+                    try:
+                        result = process_mdd(doc_text, fw_enum)
+                        st.session_state.result = result
+                        st.success("Assessment complete.")
+                        st.rerun()
+                    except Exception as e:
+                        st.error(f"Pipeline error: {e}")
+                        st.info("Check that your ANTHROPIC_API_KEY is set in .env")
 
     if st.session_state.result:
         r = st.session_state.result
@@ -140,12 +164,24 @@ with tab2:
         "Select one to auto-populate the assessment tab, or run directly."
     )
 
+    if trial_limit_reached:
+        st.warning(
+            f"Trial limit reached ({TRIAL_RUN_CAP} runs used this session). "
+            f"[Clone the repo]({GITHUB_URL}) to keep exploring with your own documents."
+        )
+
     for name, text in SAMPLE_MDDS.items():
         with st.expander(name):
             st.text_area("Document preview", text[:500] + "...", height=150, disabled=True, key=f"prev_{name}")
             col1, col2 = st.columns([1, 4])
             with col1:
-                if st.button("Run Assessment", key=f"run_{name}"):
+                if st.button(
+                    "Run Assessment" + (" (trial limit reached)" if trial_limit_reached else ""),
+                    key=f"run_{name}",
+                    disabled=trial_limit_reached,
+                ):
+                    if TRIAL_MODE:
+                        st.session_state["trial_runs_used"] += 1
                     with st.spinner("Running 4-agent pipeline..."):
                         try:
                             result = process_mdd(text, fw_enum)
